@@ -6,15 +6,16 @@ import { addToCart } from "../features/cartSlice"; // Importing addToCart action
 import axios from "axios"; // Importing Axios for making HTTP requests
 import { cartData } from "../features/thunkApi"; // Importing cartData thunk action creator
 import Axios_APIS from "../utils/axios.config";
+import { BaseURL } from "../utils/baseUrl";
 
-export const Single_product = () => {
+const Single_product = () => {
 	const { cart } = useSelector((state) => state.allCarts); // Selector for accessing cart data from Redux store
 
 	// Extracting parameters from the URL
 	const { id } = useParams();
 	const navigate = useNavigate(); // Function for navigating to different routes
 	const [data, setdata] = useState(); // State variable to hold data of the single product
-
+	console.log("data==", data);
 	// Function to fetch data of the single product from the server
 	const get_single_data = async () => {
 		try {
@@ -69,9 +70,9 @@ export const Single_product = () => {
 					<img
 						className=" max-w-[500px]"
 						src={
-							isValidUrl(data.image)
-								? data.image
-								: `${BaseURL}/${data.image}`
+							isValidUrl(data?.image)
+								? data?.image
+								: `${BaseURL}/${data?.image}`
 						}
 						alt="Card image cap"
 					/>
@@ -111,3 +112,4 @@ function isValidUrl(url) {
 		return false;
 	}
 }
+export default Single_product;

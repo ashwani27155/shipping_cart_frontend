@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"; // Importing Br
 import ProductCard from "./component/productComponent"; // Importing ProductCard component
 import Navbar from "./component/navbar"; // Importing Navbar component
 import Cart from "./component/cartPage"; // Importing Cart component
-import { Single_product } from "./component/single_product"; // Importing Single_product component
+import  Single_product  from "./component/single_product"; // Importing Single_product component
 import Placeorder from "./component/placeOrder"; // Importing Placeorder component
 import Uploadproduct from "./component/uploadProduct"; // Importing Uploadproduct component
 
