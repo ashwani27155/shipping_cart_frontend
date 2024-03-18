@@ -179,7 +179,7 @@ const Cart = () => {
 										<button
 											onClick={handleCheckout}
 											type="button"
-											disabled={totalQuantity1 > 0 ? "false" : "true"}
+											disabled={totalQuantity1 > 0 ? false : true}
 											className="btn btn-primary btn-lg btn-block text-gray-500 hover:!text-white"
 										>
 											Go to checkout
