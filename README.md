@@ -4,7 +4,7 @@ Follow these steps to set up the project locally on your machine:
 
 ## Step 1: Open a Text Editor
 
-Open any text editor of your choice. We recommend using Visual Studio Code for an enhanced development experience.
+Open any text editor like Visual Studio Code for an enhanced development experience.
 
 ## Step 2: Install Dependencies
 
