@@ -1,10 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"; // Importing createAsyncThunk function from Redux Toolkit
 import axios from "axios"; // Importing Axios for making HTTP requests
+import Axios_APIS from "../utils/axios.config";
 
 export const fetchProducts = createAsyncThunk("/fetch_product", async () => {
 	try {
 		// Making a GET request to fetch products from the server
-		const response = await axios.get("http://localhost:8081/listProduct");
+		const response = await Axios_APIS().get("/listProduct");
 		// Logging the response data for debugging purposes
 		console.log("response==", response?.data?.data);
 		// Returning the fetched products data
@@ -18,7 +19,7 @@ export const fetchProducts = createAsyncThunk("/fetch_product", async () => {
 export const cartData = createAsyncThunk("/get_cart", async () => {
 	try {
 		// Making a GET request to fetch cart data from the server
-		const response = await axios.get("http://localhost:8081/getCart");
+		const response = await Axios_APIS().get("/getCart");
 		// Logging the response data for debugging purposes
 		console.log(
 			"response==12345",
@@ -35,7 +36,7 @@ export const cartData = createAsyncThunk("/get_cart", async () => {
 export const deleteCart = createAsyncThunk("/delete_cart", async () => {
 	try {
 		// Making a DELETE request to delete cart data from the server
-		const response = await axios.delete("http://localhost:8081/clearCart");
+		const response = await Axios_APIS().delete("/clearCart");
 		// Returning the response object from the server
 		return response;
 	} catch (error) {
@@ -47,7 +48,7 @@ export const deleteCart = createAsyncThunk("/delete_cart", async () => {
 export const increasecartqnt = createAsyncThunk("/increase_cart", async () => {
 	try {
 		// Making a POST request to increase the quantity of items in the cart on the server
-		const response = await axios.post("http://localhost:8081/increaseCartQnt");
+		const response = await Axios_APIS().post("/increaseCartQnt");
 		// Returning the response object from the server
 		return response;
 	} catch (error) {
@@ -59,7 +60,7 @@ export const increasecartqnt = createAsyncThunk("/increase_cart", async () => {
 export const decreasecartqnt = createAsyncThunk("/increase_cart", async () => {
 	try {
 		// Making a POST request to decrease the quantity of items in the cart on the server
-		const response = await axios.post("http://localhost:8081/decreaseCartQnt");
+		const response = await Axios_APIS().post("/decreaseCartQnt");
 		// Returning the response object from the server
 		return response;
 	} catch (error) {

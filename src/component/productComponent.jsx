@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"; // Importing React and neces
 import { useDispatch, useSelector } from "react-redux"; // Importing useDispatch and useSelector hooks from React Redux
 import { Link } from "react-router-dom"; // Importing Link component from React Router
 import { useNavigate } from "react-router-dom"; // Importing useNavigate hook from React Router
+import Axios_APIS from "../utils/axios.config";
 import { cartData, fetchProducts } from "../features/thunkApi"; // Importing thunk action creators for fetching products and cart data
 import axios from "axios"; // Importing Axios for making HTTP requests
 
@@ -27,7 +28,7 @@ const ProductCard = () => {
 	const handleAddToCartClick = async (item) => {
 		try {
 			// Making a POST request to add the product to the cart
-			const response = await axios.post("http://localhost:8081/addToCart", {
+			const response = await Axios_APIS().post("/addToCart", {
 				productId: item?._id,
 				quantity: [item].length,
 			});

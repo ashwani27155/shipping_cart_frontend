@@ -2,6 +2,7 @@ import React, { useState } from "react"; // Importing React and useState hook
 import axios from "axios"; // Importing Axios for making HTTP requests
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import Axios_APIS from "../utils/axios.config";
 
 const Uploadproduct = () => {
 	// State to hold form data
@@ -49,8 +50,8 @@ const Uploadproduct = () => {
 			formDataWithImage.append("image", image); // Append the file object directly
 
 			// Making a POST request to add the product with form data including the image file
-			const response = await axios.post(
-				"http://localhost:8081/addProduct",
+			const response = await Axios_APIS().post(
+				"/addProduct",
 				formDataWithImage,
 				{
 					headers: {

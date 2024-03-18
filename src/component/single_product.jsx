@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react"; // Importing React, useEffect, and useState hooks
 import { useDispatch, useSelector } from "react-redux"; // Importing useDispatch and useSelector hooks from React Redux
 import { useNavigate, useParams } from "react-router-dom"; // Importing useNavigate and useParams hooks from React Router
+
 import { addToCart } from "../features/cartSlice"; // Importing addToCart action creator from cartSlice
 import axios from "axios"; // Importing Axios for making HTTP requests
 import { cartData } from "../features/thunkApi"; // Importing cartData thunk action creator
+import Axios_APIS from "../utils/axios.config";
 
 export const Single_product = () => {
 	const { cart } = useSelector((state) => state.allCarts); // Selector for accessing cart data from Redux store
@@ -16,8 +18,8 @@ export const Single_product = () => {
 	// Function to fetch data of the single product from the server
 	const get_single_data = async () => {
 		try {
-			const response = await axios.get(
-				`http://localhost:8081/get_Product_Id?id=${id}`
+			const response = await Axios_APIS().get(
+				`/get_Product_Id?id=${id}`
 			);
 
 			if (response?.status === 200) {
@@ -38,7 +40,7 @@ export const Single_product = () => {
 	// Function to add the product to the cart
 	const add_to_cart = async (id) => {
 		try {
-			const response = await axios.post("http://localhost:8081/addToCart", {
+			const response = await Axios_APIS().post("/addToCart", {
 				productId: id,
 				quantity: 1,
 			});

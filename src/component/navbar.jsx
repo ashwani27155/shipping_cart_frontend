@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"; // Importing Link component from React 
 import { cartData } from "../features/thunkApi"; // Importing cartData thunk action creator
 
 
+
 const Navbar = () => {
     // Selecting cart data from the Redux store
     const { cart } = useSelector((state) => state.allCarts);

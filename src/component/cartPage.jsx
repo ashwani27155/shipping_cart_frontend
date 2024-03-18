@@ -2,7 +2,9 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { cartData, deleteCart } from "../features/thunkApi";
 import { Link, useNavigate } from "react-router-dom";
+
 import axios from "axios";
+import Axios_APIS from "../utils/axios.config";
 const Cart = () => {
 	const { cart } = useSelector((state) => state.allCarts);
 	const dispatch = useDispatch(); //
@@ -27,8 +29,8 @@ const Cart = () => {
 		try {
 			
 			// Call increase Cart quantity api
-			const response = await axios.post(
-				"http://localhost:8081/increaseCartQnt",
+			const response = await Axios_APIS().post(
+				"/increaseCartQnt",
 				{
 					_id: id._id,
 					quantity: 1,
@@ -50,8 +52,8 @@ const Cart = () => {
 		try {
 
 			// Call increase Cart quantity api
-			const response = await axios.post(
-				"http://localhost:8081/decreaseCartQnt",
+			const response = await Axios_APIS().post(
+				"/decreaseCartQnt",
 				{
 					_id: id._id,
 					quantity: 1,
