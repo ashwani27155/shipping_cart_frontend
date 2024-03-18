@@ -4,7 +4,8 @@ import { Link } from "react-router-dom"; // Importing Link component from React 
 import { useNavigate } from "react-router-dom"; // Importing useNavigate hook from React Router
 import Axios_APIS from "../utils/axios.config";
 import { cartData, fetchProducts } from "../features/thunkApi"; // Importing thunk action creators for fetching products and cart data
-import axios from "axios"; // Importing Axios for making HTTP requests
+
+import { BaseURL } from "../utils/baseUrl";
 
 const ProductCard = () => {
 	const navigate = useNavigate(); // Function for navigating to different routes
@@ -28,7 +29,7 @@ const ProductCard = () => {
 	const handleAddToCartClick = async (item) => {
 		try {
 			// Making a POST request to add the product to the cart
-			const response = await Axios_APIS().post("/addToCart", {
+			const response = await Axios_APIS.post("/addToCart", {
 				productId: item?._id,
 				quantity: [item].length,
 			});
@@ -81,7 +82,7 @@ const ProductCard = () => {
 								src={
 									isValidUrl(item.image)
 										? item.image
-										: `http://localhost:8081/${item.image}`
+										: `${BaseURL}/${item.image}`
 								}
 								alt="Card image cap"
 							/>

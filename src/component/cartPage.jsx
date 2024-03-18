@@ -2,17 +2,15 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { cartData, deleteCart } from "../features/thunkApi";
 import { Link, useNavigate } from "react-router-dom";
-
-import axios from "axios";
+import { BaseURL } from "../utils/baseUrl";
 import Axios_APIS from "../utils/axios.config";
 const Cart = () => {
 	const { cart } = useSelector((state) => state.allCarts);
 	const dispatch = useDispatch(); //
 	const navigate = useNavigate(); //Use for routing
-	const totalQuantity1 = cart.reduce((total, item) => total + item.quantity, 0);// Calculate cart quantity
-	
+	const totalQuantity1 = cart.reduce((total, item) => total + item.quantity, 0); // Calculate cart quantity
 
-	//Calculate total cart product price 
+	//Calculate total cart product price
 	const totalPrice = cart.reduce(
 		(total, item) => total + item.quantity * item.data.price,
 		0
@@ -23,25 +21,19 @@ const Cart = () => {
 		dispatch(cartData());
 	}, []);
 
-
 	// Function for increase cart Quantity
 	const increase_cart_qnt = async (id) => {
 		try {
-			
 			// Call increase Cart quantity api
-			const response = await Axios_APIS().post(
-				"/increaseCartQnt",
-				{
-					_id: id._id,
-					quantity: 1,
-				}
-			);
-			 
+			const response = await Axios_APIS.post("/increaseCartQnt", {
+				_id: id._id,
+				quantity: 1,
+			});
+
 			// If api response is success then update cart quantity
 			if (response?.status === 200) {
 				dispatch(cartData());
 			}
-			
 		} catch (error) {
 			console.log(error, "error");
 		}
@@ -50,15 +42,11 @@ const Cart = () => {
 	// Function for decrease cart Quantity
 	const decrease_cart_qnt = async (id) => {
 		try {
-
 			// Call increase Cart quantity api
-			const response = await Axios_APIS().post(
-				"/decreaseCartQnt",
-				{
-					_id: id._id,
-					quantity: 1,
-				}
-			);
+			const response = await Axios_APIS.post("/decreaseCartQnt", {
+				_id: id._id,
+				quantity: 1,
+			});
 			// If api response is success then update cart quantity
 			if (response?.status === 200) {
 				dispatch(cartData());
@@ -70,8 +58,8 @@ const Cart = () => {
 	// Handle go to checkout button
 	const handleCheckout = () => {
 		dispatch(deleteCart());
-		dispatch(cartData());
 		navigate("/placeorder");
+		dispatch(cartData());
 	};
 
 	return (
@@ -102,7 +90,7 @@ const Cart = () => {
 																			src={
 																				isValidUrl(data.data.image)
 																					? data.data.image
-																					: `http://localhost:8081/${data.data.image}`
+																					: `${BaseURL}/${data.data.image}`
 																			}
 																			className="w-100"
 																			alt="Blue Jeans Jacket"
@@ -191,6 +179,7 @@ const Cart = () => {
 										<button
 											onClick={handleCheckout}
 											type="button"
+											disabled={totalQuantity1 > 0 ? "false" : "true"}
 											className="btn btn-primary btn-lg btn-block text-gray-500 hover:!text-white"
 										>
 											Go to checkout

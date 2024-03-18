@@ -18,9 +18,7 @@ export const Single_product = () => {
 	// Function to fetch data of the single product from the server
 	const get_single_data = async () => {
 		try {
-			const response = await Axios_APIS().get(
-				`/get_Product_Id?id=${id}`
-			);
+			const response = await Axios_APIS.get(`/get_Product_Id?id=${id}`);
 
 			if (response?.status === 200) {
 				setdata(response?.data?.data);
@@ -40,7 +38,7 @@ export const Single_product = () => {
 	// Function to add the product to the cart
 	const add_to_cart = async (id) => {
 		try {
-			const response = await Axios_APIS().post("/addToCart", {
+			const response = await Axios_APIS.post("/addToCart", {
 				productId: id,
 				quantity: 1,
 			});

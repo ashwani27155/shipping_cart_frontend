@@ -50,15 +50,11 @@ const Uploadproduct = () => {
 			formDataWithImage.append("image", image); // Append the file object directly
 
 			// Making a POST request to add the product with form data including the image file
-			const response = await Axios_APIS().post(
-				"/addProduct",
-				formDataWithImage,
-				{
-					headers: {
-						"Content-Type": "multipart/form-data", // Set content type to multipart/form-data
-					},
-				}
-			);
+			const response = await Axios_APIS.post("/addProduct", formDataWithImage, {
+				headers: {
+					"Content-Type": "multipart/form-data", // Set content type to multipart/form-data
+				},
+			});
 
 			if (response?.status === 200) {
 				toast.success("Product addded successfully");
