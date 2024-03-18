@@ -68,7 +68,11 @@ export const Single_product = () => {
 				<div className="w-[50%] border flex justify-center p-3 ">
 					<img
 						className=" max-w-[500px]"
-						src={data?.image}
+						src={
+							isValidUrl(data.image)
+								? data.image
+								: `${BaseURL}/${data.image}`
+						}
 						alt="Card image cap"
 					/>
 				</div>
@@ -99,3 +103,11 @@ export const Single_product = () => {
 		</div>
 	);
 };
+function isValidUrl(url) {
+	try {
+		new URL(url);
+		return true;
+	} catch (error) {
+		return false;
+	}
+}
