@@ -20,7 +20,7 @@ const Navbar = () => {
 			<nav className="navbar navbar-light bg-light justify-content-between fixed-top !bg-[#0d6efd] ">
 				{/* Link to navigate to the "All Product" page */}
 				<Link className="navbar-brand text-white" to="/">
-					Home Product
+					Home Page
 				</Link>
 				<form className="form-inline">
 					{/* Link to navigate to the "Cart" page */}
